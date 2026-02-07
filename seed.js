@@ -1,5 +1,6 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
+const bcryptjs = require("bcryptjs");
 const User = require("./config/src/models/User");
 const Course = require("./config/src/models/Course");
 const Grade = require("./config/src/models/Grade");
@@ -22,11 +23,16 @@ const seedData = async () => {
     await Grade.deleteMany({});
     console.log("Đã xóa dữ liệu cũ");
 
+    // Hash passwords
+    const adminPass = await bcryptjs.hash("admin123", 10);
+    const teacherPass = await bcryptjs.hash("teacher123", 10);
+    const studentPass = await bcryptjs.hash("student123", 10);
+
     // Tạo users
     const admin = await User.create({
       username: "admin",
       email: "admin@educhain.com",
-      password: "admin123",
+      password: adminPass,
       role: "admin",
       fullName: "Quản trị viên"
     });
@@ -34,7 +40,7 @@ const seedData = async () => {
     const teacher1 = await User.create({
       username: "giaovien1",
       email: "teacher1@educhain.com",
-      password: "teacher123",
+      password: teacherPass,
       role: "teacher",
       fullName: "Nguyễn Văn A"
     });
@@ -42,7 +48,7 @@ const seedData = async () => {
     const teacher2 = await User.create({
       username: "giaovien2",
       email: "teacher2@educhain.com",
-      password: "teacher123",
+      password: teacherPass,
       role: "teacher",
       fullName: "Trần Thị B"
     });
@@ -50,7 +56,7 @@ const seedData = async () => {
     const student1 = await User.create({
       username: "sinhvien1",
       email: "student1@educhain.com",
-      password: "student123",
+      password: studentPass,
       role: "student",
       fullName: "Lê Văn C"
     });
@@ -58,7 +64,7 @@ const seedData = async () => {
     const student2 = await User.create({
       username: "sinhvien2",
       email: "student2@educhain.com",
-      password: "student123",
+      password: studentPass,
       role: "student",
       fullName: "Phạm Thị D"
     });
@@ -66,7 +72,7 @@ const seedData = async () => {
     const student3 = await User.create({
       username: "sinhvien3",
       email: "student3@educhain.com",
-      password: "student123",
+      password: studentPass,
       role: "student",
       fullName: "Hoàng Văn E"
     });

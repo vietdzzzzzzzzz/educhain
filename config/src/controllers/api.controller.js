@@ -4,6 +4,7 @@ const Grade = require("../models/Grade");
 const Announcement = require("../models/Announcement");
 const Schedule = require("../models/Schedule");
 const Exam = require("../models/Exam");
+const bcryptjs = require("bcryptjs");
 
 exports.hello = (req, res) => {
   res.json({ message: "Hello from backend " });
@@ -21,8 +22,9 @@ exports.login = async (req, res) => {
       return res.status(401).json({ message: "Invalid username or password" });
     }
     
-    // Simple password check (in production, use bcrypt)
-    if (user.password !== password) {
+    // Compare hashed password
+    const isPasswordValid = await bcryptjs.compare(password, user.password);
+    if (!isPasswordValid) {
       return res.status(401).json({ message: "Invalid username or password" });
     }
     
@@ -70,6 +72,10 @@ exports.createUser = async (req, res) => {
       ...req.body,
       password: req.body.password || '123456'
     };
+    
+    // Hash password
+    userData.password = await bcryptjs.hash(userData.password, 10);
+    
     const user = new User(userData);
     const savedUser = await user.save();
     // Remove password from response

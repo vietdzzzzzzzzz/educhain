@@ -1,5 +1,0 @@
-{
-  "buildCommand": "npm --prefix educhain2 run build",
-  "outputDirectory": "educhain2/dist",
-  "installCommand": "npm --prefix educhain2 install"
-}

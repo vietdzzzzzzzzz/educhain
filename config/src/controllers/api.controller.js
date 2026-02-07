@@ -16,7 +16,10 @@ exports.hello = (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { username, password } = req.body;
+    console.log('Login attempt:', { username, password: '***' });
+    
     const user = await User.findOne({ username });
+    console.log('User found:', user ? user.username : 'NOT FOUND');
     
     if (!user) {
       return res.status(401).json({ message: "Invalid username or password" });
@@ -24,6 +27,8 @@ exports.login = async (req, res) => {
     
     // Compare hashed password
     const isPasswordValid = await bcryptjs.compare(password, user.password);
+    console.log('Password valid:', isPasswordValid);
+    
     if (!isPasswordValid) {
       return res.status(401).json({ message: "Invalid username or password" });
     }
@@ -32,6 +37,7 @@ exports.login = async (req, res) => {
     const userResponse = user.toObject();
     delete userResponse.password;
     
+    console.log('Login success:', userResponse.username);
     res.json(userResponse);
   } catch (error) {
     console.error('Login error:', error);

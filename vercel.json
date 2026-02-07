@@ -1,0 +1,19 @@
+{
+  "buildCommand": "npm install && cd educhain2 && npm install",
+  "outputDirectory": "educhain2/dist",
+  "functions": {
+    "api/index.js": {
+      "runtime": "nodejs20.x"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/educhain2"
+    }
+  ]
+}

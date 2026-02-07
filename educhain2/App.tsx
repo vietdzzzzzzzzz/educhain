@@ -33,13 +33,12 @@ const DashboardSwitch = () => {
 };
 
 const App: React.FC = () => {
-  const { user } = useAuth();
   return (
     <AuthProvider>
       <Router>
         <Routes>
-          <Route path="/" element={user ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
-          <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login />} />
+          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/login" element={<Login />} />
           <Route element={<Layout />}>
             <Route path="/dashboard" element={
               <ProtectedRoute>
@@ -108,6 +107,7 @@ const App: React.FC = () => {
         </Routes>
       </Router>
     </AuthProvider>
+  );
   );
 }
 

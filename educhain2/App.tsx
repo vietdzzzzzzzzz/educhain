@@ -37,10 +37,11 @@ const App: React.FC = () => {
     <AuthProvider>
       <Router>
         <Routes>
+          <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/login" element={<Login />} />
           
           <Route element={<Layout />}>
-            <Route path="/" element={
+            <Route path="/dashboard" element={
               <ProtectedRoute>
                 <DashboardSwitch />
               </ProtectedRoute>
@@ -109,7 +110,7 @@ const App: React.FC = () => {
             <Route path="/test-chat" element={<TestChatBot />} />
           </Route>
 
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       </Router>
     </AuthProvider>

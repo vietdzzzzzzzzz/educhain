@@ -46,25 +46,25 @@ const Announcements: React.FC = () => {
 
   const getTypeText = (type: string) => {
     switch (type) {
-      case 'Exam': return 'Ky thi';
-      case 'Schedule': return 'Lich hoc';
-      case 'Personal': return 'Ca nhan';
+      case 'Exam': return 'Kỳ thi';
+      case 'Schedule': return 'Lịch học';
+      case 'Personal': return 'Cá nhân';
       default: return 'Chung';
     }
   };
 
-  if (loading) return <div className="text-slate-500 font-medium">Dang tai thong bao...</div>;
+  if (loading) return <div className="text-slate-500 font-medium">Đang tải thông báo...</div>;
 
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">Thong bao he thong</h1>
-          <p className="text-slate-500">Cap nhat tin tuc moi nhat tu du lieu server.</p>
+          <h1 className="text-3xl font-bold text-slate-900">Thông báo hệ thống</h1>
+          <p className="text-slate-500">Cập nhật tin tức mới nhất từ dữ liệu server.</p>
         </div>
         <div className="flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-xl font-bold text-sm">
           <Bell className="w-4 h-4" />
-          {announcements.length} thong bao
+          {announcements.length} thông báo
         </div>
       </header>
 
@@ -74,7 +74,7 @@ const Announcements: React.FC = () => {
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
             <input
               type="text"
-              placeholder="Tim kiem noi dung thong bao..."
+              placeholder="Tìm kiếm nội dung thông báo..."
               className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -91,7 +91,7 @@ const Announcements: React.FC = () => {
                     : 'bg-white text-slate-500 border-slate-200 hover:border-blue-300 hover:text-blue-600'
                 }`}
               >
-                {t === 'All' ? 'Tat ca' : getTypeText(t)}
+                {t === 'All' ? 'Tất cả' : getTypeText(t)}
               </button>
             ))}
           </div>
@@ -103,7 +103,7 @@ const Announcements: React.FC = () => {
               <div className="flex flex-col md:flex-row gap-6">
                 <div className="hidden md:flex flex-col items-center justify-center min-w-[80px] h-[80px] bg-white rounded-2xl shadow-sm border border-slate-100">
                   <span className="text-xl font-black text-slate-800">{(ann.date || '').split('-')[2] || '--'}</span>
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Thang {(ann.date || '').split('-')[1] || '--'}</span>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Tháng {(ann.date || '').split('-')[1] || '--'}</span>
                 </div>
 
                 <div className="flex-1 space-y-3">
@@ -125,15 +125,15 @@ const Announcements: React.FC = () => {
                     <div className="flex items-center gap-4">
                       <div className="flex items-center gap-1 text-xs text-slate-400">
                         <Clock className="w-3.5 h-3.5" />
-                        <span>Moi dang</span>
+                        <span>Mới đăng</span>
                       </div>
                       <div className="flex items-center gap-1 text-xs text-slate-400">
                         <Tag className="w-3.5 h-3.5" />
-                        <span>He thong</span>
+                        <span>Hệ thống</span>
                       </div>
                     </div>
                     <button className="flex items-center gap-1 text-sm font-bold text-blue-600 hover:underline">
-                      Xem chi tiet
+                      Xem chi tiết
                       <ChevronRight className="w-4 h-4" />
                     </button>
                   </div>
@@ -145,8 +145,8 @@ const Announcements: React.FC = () => {
               <div className="p-6 bg-slate-50 rounded-full mb-4">
                 <Megaphone className="w-12 h-12 text-slate-300" />
               </div>
-              <h3 className="text-lg font-bold text-slate-800">Khong tim thay thong bao</h3>
-              <p className="text-slate-400 max-w-xs mx-auto">Chua co du lieu phu hop tren server.</p>
+              <h3 className="text-lg font-bold text-slate-800">Không tìm thấy thông báo</h3>
+              <p className="text-slate-400 max-w-xs mx-auto">Chưa có dữ liệu phù hợp trên server.</p>
             </div>
           )}
         </div>

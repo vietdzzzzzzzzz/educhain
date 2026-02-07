@@ -18,8 +18,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   useEffect(() => {
     const storedUser = localStorage.getItem('edu_user');
+    console.log('AuthProvider: storedUser', storedUser);
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        console.log('AuthProvider: parsedUser', parsedUser);
+        setUser(parsedUser);
+      } catch (e) {
+        console.error('AuthProvider: error parsing user', e);
+        setUser(null);
+      }
+    } else {
+      setUser(null);
     }
     setIsLoading(false);
   }, []);

@@ -32,7 +32,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const user = {
         ...userData,
         id: userData._id || userData.id,
-        role: (userData.role || '').toUpperCase(),
+        role: (userData.role || '').toLowerCase(), // Chuẩn hóa role về chữ thường
         avatar: `https://picsum.photos/seed/${username}/200`
       };
       setUser(user as User);

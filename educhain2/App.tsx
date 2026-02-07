@@ -48,74 +48,79 @@ const App: React.FC = () => {
                   <Route path="/" element={user ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
                   <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login />} />
           
-                  <Route element={<Layout />}>
-                    <Route path="/dashboard" element={
-                      <ProtectedRoute>
-                        <DashboardSwitch />
-                      </ProtectedRoute>
-                    } />
-                    {/* Common Routes */}
-                    <Route path="/announcements" element={
-                      <ProtectedRoute>
-                        <Announcements />
-                      </ProtectedRoute>
-                    } />
-                    {/* Student Routes */}
-                    <Route path="/grades" element={
-                      <ProtectedRoute allowedRoles={[UserRole.STUDENT]}>
-                        <GradesPage />
-                      </ProtectedRoute>
-                    } />
-                    <Route path="/profile" element={
-                      <ProtectedRoute allowedRoles={[UserRole.STUDENT]}>
-                        <Profile />
-                      </ProtectedRoute>
-                    } />
-                    <Route path="/progress" element={
-                      <ProtectedRoute allowedRoles={[UserRole.STUDENT]}>
-                        <ProgressPage />
-                      </ProtectedRoute>
-                    } />
-                     <Route path="/schedule" element={
-                      <ProtectedRoute allowedRoles={[UserRole.STUDENT]}>
-                        <SchedulePage />
-                      </ProtectedRoute>
-                    } />
-                    {/* Teacher Routes */}
-                    <Route path="/classes" element={
-                      <ProtectedRoute allowedRoles={[UserRole.TEACHER]}>
-                        <TeacherClasses />
-                      </ProtectedRoute>
-                    } />
-                    <Route path="/classes/:courseId" element={
-                      <ProtectedRoute allowedRoles={[UserRole.TEACHER]}>
-                        <ClassDetails />
-                      </ProtectedRoute>
-                    } />
-                    <Route path="/grade-entry" element={
-                      <ProtectedRoute allowedRoles={[UserRole.TEACHER]}>
-                        <GradeEntry />
-                      </ProtectedRoute>
-                    } />
-                    {/* Admin Routes */}
-                    <Route path="/users" element={
-                      <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
-                        <UserManagement />
-                      </ProtectedRoute>
-                    } />
-                    <Route path="/courses" element={
-                      <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
-                        <CourseManagement />
-                      </ProtectedRoute>
-                    } />
-            
-                    {/* Test Route - Accessible without authentication */}
-                    <Route path="/test" element={<TestDataEntry />} />
-                    <Route path="/test-chat" element={<TestChatBot />} />
-                  </Route>
-                  <Route path="*" element={<Navigate to="/login" />} />
-                </Routes>
-              </Router>
-            </AuthProvider>
-
-export default App;
+                  return (
+                    <AuthProvider>
+                      <Router>
+                        <Routes>
+                          <Route path="/" element={user ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
+                          <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login />} />
+          
+                          <Route element={<Layout />}>
+                            <Route path="/dashboard" element={
+                              <ProtectedRoute>
+                                <DashboardSwitch />
+                              </ProtectedRoute>
+                            } />
+                            {/* Common Routes */}
+                            <Route path="/announcements" element={
+                              <ProtectedRoute>
+                                <Announcements />
+                              </ProtectedRoute>
+                            } />
+                            {/* Student Routes */}
+                            <Route path="/grades" element={
+                              <ProtectedRoute allowedRoles={[UserRole.STUDENT]}>
+                                <GradesPage />
+                              </ProtectedRoute>
+                            } />
+                            <Route path="/profile" element={
+                              <ProtectedRoute allowedRoles={[UserRole.STUDENT]}>
+                                <Profile />
+                              </ProtectedRoute>
+                            } />
+                            <Route path="/progress" element={
+                              <ProtectedRoute allowedRoles={[UserRole.STUDENT]}>
+                                <ProgressPage />
+                              </ProtectedRoute>
+                            } />
+                             <Route path="/schedule" element={
+                              <ProtectedRoute allowedRoles={[UserRole.STUDENT]}>
+                                <SchedulePage />
+                              </ProtectedRoute>
+                            } />
+                            {/* Teacher Routes */}
+                            <Route path="/classes" element={
+                              <ProtectedRoute allowedRoles={[UserRole.TEACHER]}>
+                                <TeacherClasses />
+                              </ProtectedRoute>
+                            } />
+                            <Route path="/classes/:courseId" element={
+                              <ProtectedRoute allowedRoles={[UserRole.TEACHER]}>
+                                <ClassDetails />
+                              </ProtectedRoute>
+                            } />
+                            <Route path="/grade-entry" element={
+                              <ProtectedRoute allowedRoles={[UserRole.TEACHER]}>
+                                <GradeEntry />
+                              </ProtectedRoute>
+                            } />
+                            {/* Admin Routes */}
+                            <Route path="/users" element={
+                              <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
+                                <UserManagement />
+                              </ProtectedRoute>
+                            } />
+                            <Route path="/courses" element={
+                              <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
+                                <CourseManagement />
+                              </ProtectedRoute>
+                            } />
+                            {/* Test Route - Accessible without authentication */}
+                            <Route path="/test" element={<TestDataEntry />} />
+                            <Route path="/test-chat" element={<TestChatBot />} />
+                          </Route>
+                          <Route path="*" element={<Navigate to="/login" />} />
+                        </Routes>
+                      </Router>
+                    </AuthProvider>
+                  );

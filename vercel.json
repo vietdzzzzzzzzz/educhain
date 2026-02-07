@@ -1,6 +1,7 @@
 {
-  "buildCommand": "cd educhain2 && npm run build",
-  "installCommand": "npm install && cd educhain2 && npm install",
-  "outputDirectory": "educhain2/dist",
-  "framework": "vite"
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "workingDirectory": "educhain2"
 }

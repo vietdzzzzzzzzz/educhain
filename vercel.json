@@ -1,19 +1,5 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "npm --prefix educhain2 run build",
   "outputDirectory": "educhain2/dist",
-  "functions": {
-    "api/index.js": {
-      "runtime": "nodejs20.x"
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
+  "installCommand": "npm --prefix educhain2 install"
 }

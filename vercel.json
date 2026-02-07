@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm install && npm --prefix educhain2 install && npm --prefix educhain2 run build",
+  "buildCommand": "npm run build",
   "outputDirectory": "educhain2/dist",
   "functions": {
     "api/index.js": {
